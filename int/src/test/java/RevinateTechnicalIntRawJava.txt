@@ -1,0 +1,105 @@
+// Hi, I'm here!
+// hearts, clubs, diamonds, spades
+// ace, 2, 3 ... queen, king
+
+enum Suit {
+  HEARTS,
+  CLUBS,
+  DIAMONDS,
+  SPADES
+}
+
+interface Value {
+  String display();
+  int canonical();
+}
+
+interface Card {
+  Suit suit();
+  Value value();
+}
+
+interface Deck {
+  Set<Card> dealHand(int nCards);
+}
+
+interface Hand {
+  Set<Card> hand();
+}
+
+enum PokerHandType {
+  KIND2,
+  KIND3
+}
+
+class PokerHand implements Hand {
+
+  private final Set<Card> pokerCards;
+  private final Set<PokerHandType> handTypes;
+
+  PokerHand(Card... handCards) {
+  	pokerCards = new TreeSet<>(Arrays.asList(handCards));
+    final Map<Card, Integer> cvf = new HashMap<>();
+    for (final Card card : pokerCard) {
+      final Integer currentCount = cvf.get(card);
+      if (currentCount == null) {
+        cvf.put(card, 1);
+        continue;
+      }
+        cvf.put(card, currentCount + 1);
+    }
+    if (cvf.values().contains(2)) {
+      handTypes.add(KIND2);
+    }
+    if (cvf.values().contains(3)) {
+      handTypes.add(KIND3);
+    }
+  }
+
+  boolean isFullHouse() {
+    return handTypes.contains(KIND2) && handTypes.contains(KIND3);
+  }
+
+}
+
+class PokerDeck implements Deck {
+
+  StandardDeck() {
+    cards = new ArrayList<>(52)
+    for (Suit suit : Suit.values()) {
+      for (int i = 1; i <= 13; i++) {
+        cards.add(new StdCard(suit, new StdValue(i)));
+      }
+    }
+    Collections.shuffle(cards);
+  }
+
+}
+
+class PokerDeck extends StandardDeck {
+
+  PokerHand drawHand(int nCards) {
+    final Iterator<Card> cardIterator = cards.iterator();
+    final Card[] handCards = new Card[nCards];
+    for (int i = 0; i < nCards; i++) {
+      handCards[i] = cardIterator.next();
+      cardIterator.remove();	// card is not "in the deck" anymore
+    }
+    return new PokerHand(handCards);
+  }
+
+  private final Set<Card> cards;
+
+}
+
+class PokerDealer {
+  // types:
+  //  2 of a kind
+  //  3 of a kind
+  //  full house: 2 of a kind plus 3 of a kind
+  private Deck deck;
+  Set<Card> dealHand() {
+
+  }
+}
+

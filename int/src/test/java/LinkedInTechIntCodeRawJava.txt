@@ -1,0 +1,261 @@
+import java.util.List;
+
+/**
+ *  Class for trying Java-ish stuff
+ */
+public class LinkedInTechnicalIntCode {
+
+    /**
+     *  @param inArgs
+     */
+    public static void main(final String[] inArgs) {
+
+    }
+
+    public interface TwoSum {
+
+        /**
+         * Stores @param input in an internal data structure.
+         */
+        void store(int input);
+
+        /**
+         * Returns true if there is any pair of numbers in the internal data structure which
+         * have sum @param val, and false otherwise.
+         * For example, if the numbers 1, -2, 3, and 6 had been stored,
+         * the method should return true for 4, -1, and 9, but false for 10, 5, and 0
+         */
+        boolean test(int val);
+    }
+
+    public class MartysTwoSum implements TwoSum {
+
+        private final Set<Integer> _storedValues = new TreeSet<>();
+
+        @Override
+        public void store(int input) {
+            _storedValues.put(input);
+        }
+
+        @Override
+        public boolean test(int val) {
+            for (final int consider : _storedValues) {
+                // looking for pair consider + lookigFor = val; lookigFor = val - consider
+                final int lookigFor = val - consider;
+                if (_storedValues.conatains(lookingFor)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public class MartysSecondTwoSum implements TwoSum {
+
+        private final Set<Integer> _storedInputs = new HashSet<>();
+        private final Set<Integer> _storedSums = new HashSet<>();
+
+        @Override
+        public void store(int input) {
+            _storedInputs.put(input);
+            for (final int val2 : _storedInputs) {
+                _storedSums.put(input + val2);
+            }
+        }
+
+        @Override
+        public boolean test(int val) {
+            return _storedSums.get(val) != null;
+        }
+
+    }
+
+    public class MartysSecondTwoSum implements TwoSum {
+
+        private final Set<Integer> _storedInputs = new HashSet<>();
+        private final Set<Integer> _storedSums = new HashSet<>();
+    /**
+    For example, if the numbers 1, -2, 3, and 6 had been stored,
+         * the method should return true for 4, -1, and 9, but false for 10, 5, and 0
+         */
+
+        public void store0(int input) {
+            _storedInputs.put(input);
+            for (int i = 0; i < _storedInputs.size(); i++) {
+                for (int j = i + 1; j < _storedInputs.size(); j++) {
+                    _storedSums.put(_storedInputs[i] + _storedInputs[j]);
+                }
+            }
+
+        }
+
+        @Override
+        public void store(int input) {
+            _storedInputs.put(input);
+            for (int i = 0; i < _storedInputs.size(); i++) {
+                final int storedVal = _storedInputs[i];
+                if (input == storedVal) {
+                    continue;
+                }
+                _storedSums.put(input + storedVal);
+            }
+        }
+
+        @Override
+        public boolean test(int val) {
+            return _storedSums.get(val) != null;
+        }
+
+    }
+
+    // Input: [1,0,0,0,0,0,1,0,0]
+    //
+    //    3 => true
+    //    4 => false
+    //
+    // Input: [1,0,0,1,0,0,1,0,0]
+    //
+    //    1 => true
+    //    2 => false
+    //
+    // Input: [0]
+    //
+    //    1 => true
+    //    2 => false
+
+    public boolean canPlaceFlowers(List<Boolean> flowerbed, int numberToPlace) {
+        // Implementation here
+        // if index == 0 ||
+        // (index == 0 || [index-1] == 0) && (index == size() - 1 || [index+1] == 0)
+        int count = 0;
+        for (int index = 0; index < flowerbed.size(); index++) {
+            if (
+                (index == 0 || !flowerbed.get(index-1))
+             && (index == flowerbed.size() - 1 || !flowerbed.get(index+1))
+            ) {
+                count++;
+            }
+        }
+        return count < numberToPlace;
+    }
+
+
+
+    -------
+
+public interface TwoSum {
+    /**
+     * Stores @param input in an internal data structure.
+     */
+    void store(int input);
+
+    /**
+     * Returns true if there is any pair of numbers in the internal data structure which
+     * have sum @param val, and false otherwise.
+     * For example, if the numbers 1, -2, 3, and 6 had been stored,
+     * the method should return true for 4, -1, and 9, but false for 10, 5, and 0
+     */
+    boolean test(int val);
+}
+
+public class MartysTwoSum implements TwoSum {
+
+    private final Set<Integer> _storedValues = new HashSet<>();
+
+    // O(1)
+    @Override
+    public void store(int input) {
+        _storedValues.put(input);
+    }
+
+    // O(N)
+    @Override
+    public boolean test(int val) {
+        for (final int consider : _storedValues) {
+            // looking for pair consider + lookigFor = val; lookigFor = val - consider
+            final int lookigFor = val - consider;
+            if (_storedValues.conatains(lookingFor)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
+
+public class MartysSecondTwoSum implements TwoSum {
+
+    private final Set<Integer> _storedInputs = new HashSet<>();
+    private final Set<Integer> _storedSums = new HashSet<>();
+/**
+For example, if the numbers 1, -2, 3, and 6 had been stored,
+     * the method should return true for 4, -1, and 9, but false for 10, 5, and 0
+     */
+
+    public void store0(int input) {
+        _storedInputs.put(input);
+        for (int i = 0; i < _storedInputs.size(); i++) {
+            for (int j = i + 1; j < _storedInputs.size(); j++) {
+                _storedSums.put(_storedInputs[i] + _storedInputs[j]);
+            }
+        }
+
+    }
+
+    @Override
+    public void store(int input) {
+        _storedInputs.put(input);
+        for (int i = 0; i < _storedInputs.size(); i++) {
+            final int storedVal = _storedInputs[i];
+            if (input == storedVal) {
+                continue;
+            }
+            _storedSums.put(input + storedVal);
+        }
+    }
+
+    @Override
+    public boolean test(int val) {
+        return _storedSums.get(val) != null;
+    }
+
+}
+
+
+
+
+// -----
+
+// Input: [1,0,0,0,0,0,1,0,0]
+//
+//    3 => true
+//    4 => false
+//
+// Input: [1,0,0,1,0,0,1,0,0]
+//
+//    1 => true
+//    2 => false
+//
+// Input: [0]
+//
+//    1 => true
+//    2 => false
+
+public boolean canPlaceFlowers(List<Boolean> flowerbed, int numberToPlace) {
+    // Implementation here
+    // if index == 0 ||
+    // (index == 0 || [index-1] == 0) && (index == size() - 1 || [index+1] == 0)
+    int count = 0;
+    for (int index = 0; index < flowerbed.size(); index++) {
+        if (
+            (index == 0 || !flowerbed.get(index-1))
+         && (index == flowerbed.size() - 1 || !flowerbed.get(index+1))
+        ) {
+            count++;
+        }
+    }
+    return count >= numberToPlace;
+}
+
+
+}

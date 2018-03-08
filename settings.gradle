@@ -1,3 +1,4 @@
 rootProject.name = 'AlgorithmPractice'
 include 'ap'
+include 'int'
 
