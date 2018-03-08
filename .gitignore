@@ -20,4 +20,7 @@ hs_err_pid*
 /output/
 /build/
 /ap/build/
+/int/build/
 /.gradle/
+
+.idea/workspace.xml
