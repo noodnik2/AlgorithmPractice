@@ -3,7 +3,6 @@ package mdr.ap.algos;
 import static mdr.ap.util.TestLogger.log;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import mdr.ap.util.NotNull;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -31,8 +30,8 @@ public class AlgoTests {
     
     @Test
     public void tesGcdExceptionCases() {
-        assertGcdExceptionCase(IllegalArgumentException.class, 1, 0);
-        assertGcdExceptionCase(IllegalArgumentException.class, 0, 1);
+        assertGcdExceptionCase(1, 0);
+        assertGcdExceptionCase(0, 1);
     }
 
     
@@ -41,8 +40,7 @@ public class AlgoTests {
     //
     
     private void assertGcdExceptionCase(
-        @NotNull final Class<? extends Exception> inExpectedExceptionClass,
-        final long inN1, 
+        final long inN1,
         final long inN2
     ) {
         try {
