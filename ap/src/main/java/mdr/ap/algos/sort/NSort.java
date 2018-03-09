@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.concurrent.atomic.LongAdder;
 
 import static mdr.ap.algos.sort.NSort.FlagColors.BLUE;
 import static mdr.ap.algos.sort.NSort.FlagColors.RED;
