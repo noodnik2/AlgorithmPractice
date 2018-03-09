@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -17,6 +16,7 @@ import java.lang.reflect.Method;
 import java.util.function.Consumer;
 
 import mdr.ap.util.NotNull;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -33,10 +33,9 @@ public class SingletonTests {
     /**
      *  Ensures the same instance is returned by the singleton's "factory" method and
      *  a subsequent "re-serialization" of that object
-     *  @throws Exception unhandled exception
      */
     @Test
-    public void testSameInstance() throws Exception {
+    public void testSameInstance() {
 
         final Consumer<Class<?>> testSameInstanceConsumer = (
             fc -> {
@@ -60,17 +59,16 @@ public class SingletonTests {
     /**
      *  Ensures the same instance is returned by a call to the singleton's "factory"
      *  method and a subsequent "deserialization" of that (or any) object.
-     *  @throws Exception unhandled exception
      */
     @Test
-    public void testSerializableSingletons() throws Exception {
+    public void testSerializableSingletons() {
 
         final Consumer<Class<?>> testSerializableSingletonConsumer = (
             fc -> {
                 try {
                     testSerializableSingleton(fc);
                 } catch (final Exception e) {
-                    throw new RuntimeException(e);
+                    Assertions.fail(e);
                 }
             }
         );
@@ -94,7 +92,7 @@ public class SingletonTests {
      */
     private void testSerializableSingleton(
         @NotNull final Class<?> factoryClass
-    ) throws Exception, IOException, ClassNotFoundException {
+    ) throws Exception {
 
         final Object firstInstance = getInstance(factoryClass);
         assertTrue(firstInstance instanceof Serializable);

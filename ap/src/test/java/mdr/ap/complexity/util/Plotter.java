@@ -64,7 +64,7 @@ public class Plotter {
 
         final XYSeriesCollection seriesDataset = new XYSeriesCollection();
 
-        inTimings.entrySet().stream().forEach(
+        inTimings.entrySet().forEach(
             e -> {
                 final XYSeries series = new XYSeries(e.getKey());
                 final long[] values = e.getValue();

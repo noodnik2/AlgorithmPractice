@@ -21,9 +21,9 @@ public class TimingGraphsGenerator {
     public static void main(@NotNull final String[] inArgs) {
         
         final int[] sizes = createSizesOverRange(16, 100, 10000);
-        
+
         plotDatasetToPngFile(
-            new File("output/stringops_timings.png"), 
+            new File("/tmp/stringops_timings.png"),
             sizes, 
             runSeries(createStringOpsRunners(sizes))
         );
@@ -48,8 +48,8 @@ public class TimingGraphsGenerator {
         final Runnable[] stringBuilderRunners = new Runnable[inSizes.length];
         for (int i = 0; i < inSizes.length; i++) {
             final StringOps stringOpsForSize = new StringOps(inSizes[i]);
-            plusEqualRunners[i] = () -> stringOpsForSize.appendViaPlusEquals();
-            stringBuilderRunners[i] = () -> stringOpsForSize.appendViaStringBuilder();
+            plusEqualRunners[i] = stringOpsForSize::appendViaPlusEquals;
+            stringBuilderRunners[i] = stringOpsForSize::appendViaStringBuilder;
         }
         final Map<String, Runnable[]> seriesRunners = Map.of(
             "plusEqual", plusEqualRunners,

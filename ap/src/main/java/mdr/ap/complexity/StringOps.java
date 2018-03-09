@@ -19,6 +19,7 @@ public class StringOps {
     public String appendViaPlusEquals() {
         String accumulator = "";
         for (int i = 0; i < _n; i++) {
+            // NOTE: string concatenation like this is generally a "no-no"
             accumulator += WORD;
         }
         return accumulator;
