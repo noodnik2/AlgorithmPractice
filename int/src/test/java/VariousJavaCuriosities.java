@@ -1,3 +1,5 @@
+import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
@@ -60,4 +62,58 @@ public class VariousJavaCuriosities {
     private static void log(final String inMessage) {
         System.out.println(inMessage);
     }
+
+    /**
+     *  "Describe the behavior of this program"
+     *  @return indication of which "catch" clause was invoked
+     */
+    private static String whichCatchInvoked() {
+
+     try {
+            String s = null;
+            s = s.substring(10);
+        } catch (RuntimeException e) {
+            return "RuntimeException";
+        } catch (Exception e) {
+            return "Exception";
+        }
+        //notreached
+        return "none";
+    }
+
+    /**
+     *  Describe the contents of ‘list’ and ‘copy’
+     */
+    private static void listAndCopy() {
+        ArrayList<Point> list = new ArrayList<>();
+        list.add(new Point(100,200));
+
+        ArrayList<Point> copy = new ArrayList<>(list);
+        copy.get(0).setLocation(150,250);
+
+        System.out.println(list);
+        System.out.println(copy);
+    }
+
+    /**
+     *  "What is the output of this program?
+     *  Comment on the difference between the two if statements."
+     */
+    private static void stringComparisons() {
+        String s1 = new String("Test");
+        String s2 = "Test";
+        if (s1 == s2) {
+            System.out.println("Same");
+        }
+        if (s1.equals(s2)) {
+            System.out.println("Equals");
+        }
+    }
+
+    public static void main(String[] inArgs) {
+//        System.out.println(whichCatchInvoked());
+//        listAndCopy();
+        stringComparisons();
+    }
+
 }
