@@ -1,3 +1,5 @@
+package pandora;
+
 /**
  *  Pandora interview design question: design an elevator
  */
