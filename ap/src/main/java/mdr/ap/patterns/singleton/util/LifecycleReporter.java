@@ -15,6 +15,7 @@ public class LifecycleReporter implements Runnable, Serializable {
         log(this + " constructed");
     }
 
+    @SuppressWarnings("deprecation") // YYMV
     @Override
     public void finalize() {
         log(this + " finalized");
